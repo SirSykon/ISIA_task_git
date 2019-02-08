@@ -65,4 +65,23 @@ public class Matriz {
         ret += "]\n";
         return ret;
     }
+    
+    public static Matriz Multiplicar(Matriz a, Matriz b) throws DimensionesIncompatibles { 
+        if(a.getDimension().width!=b.getDimension().height) throw new DimensionesIncompatibles("La multiplicación de matrices requiere que el número de columnas de A coincida con el número de filas de B");        
+        int i, j, k, filasA, columnasA, columnasB, aux;
+        filasA = a.getDimension().height;  
+        columnasA = a.getDimension().width;  
+        columnasB = b.getDimension().width; 
+        Matriz matrizResultante = new Matriz(filasA, columnasB, false);
+        for (j = 0; j < filasA; j++) { 
+            for (i = 0; i < columnasB; i++) {
+                aux = 0; 
+                for (k = 0; k < columnasA; k++){
+                    aux = aux + a.datos[k][j]*b.datos[i][k];
+                }
+                matrizResultante.datos[i][j] += aux;                 
+            }
+        } 
+        return matrizResultante;
+    }
 }
