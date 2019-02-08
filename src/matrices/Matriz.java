@@ -65,4 +65,19 @@ public class Matriz {
         ret += "]\n";
         return ret;
     }
+    
+    public static Matriz Trasponer(Matriz a) {
+        int filasA, columnasA;
+        filasA = a.getDimension().height; 
+        columnasA = a.getDimension().width; 
+        Matriz matrizResultante = new Matriz(columnasA, filasA, false);
+        
+        for (int j = 0; j < filasA; j++) {
+            for (int i = 0; i < columnasA; i++) {
+                matrizResultante.datos[j][i] = a.datos[i][j];
+            }        
+        }
+        
+        return matrizResultante;
+    }
 }
